@@ -60,6 +60,16 @@ namespace SimpleAdsAuth.Web.Controllers
             return Redirect("/home/newad");
         }
 
+        public IActionResult CheckEmailAvailability(string email)
+        {
+            var db = new UserDb(_connectionString);
+            bool isAvailable = db.IsEmailAvailable(email);
+            return Json(new EmailAvailabilityViewModel
+            {
+                IsAvailable = isAvailable
+            });
+        }
+
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync().Wait();

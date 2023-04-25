@@ -97,16 +97,5 @@ namespace SimpleAdsAuth.Data
             };
             return ad;
         }
-
-        public bool IsEmailAvailable(string email)
-        {
-            using var connection = new SqlConnection(_connectionString);
-            using var cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT COUNT(*) FROM Users WHERE Email = @email";
-            cmd.Parameters.AddWithValue("@email", email);
-            connection.Open();
-            int count = (int)cmd.ExecuteScalar();
-            return count == 0;
-        }
     }
 }

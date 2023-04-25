@@ -76,6 +76,19 @@ namespace SimpleAdsAuth.Web.Controllers
             return View(db.GetAdsForUser(userId));
         }
 
+        public IActionResult Test()
+        {
+            return Json(new SimpleAd
+            {
+                Id = 10,
+                Date = DateTime.Now,
+                Description = "My Thing",
+                PhoneNumber = "234234234234",
+                PosterName = "John Doe",
+                UserId = 89
+            });
+        }
+
         private int? GetCurrentUserId()
         {
             var userDb = new UserDb(_connectionString);
